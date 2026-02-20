@@ -1,4 +1,15 @@
-{% extends "base.html" %} {% block tittle %} Home Page {% endblock %}
+{% extends "base.html" %}
+
+{% block title %} Home Page {% endblock %}
+
 {% block content %}
-<p> this is the home page</p>
+<p>This is the home page</p>
+
+{% if metar %}
+    <h3>METAR Data:</h3>
+    <pre>{{ metar }}</pre>
+{% else %}
+    <p>No METAR data available.</p>
+{% endif %}
+
 {% endblock %}
