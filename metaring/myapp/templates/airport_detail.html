@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %} Home Page {% endblock %}
+
+{% block content %}
+<p>This is the AIRPORT</p>
+
+<h1>{{ airport.name }}</h1>
+
+    <ul>
+        <li><strong>ICAO:</strong> {{ airport.icao }}</li>
+        <li><strong>IATA:</strong> {{ airport.iata }}</li>
+        <li><strong>City:</strong> {{ airport.city }}</li>
+        <li><strong>Subdivision:</strong> {{ airport.subd }}</li>
+        <li><strong>Country:</strong> {{ airport.country }}</li>
+        <li><strong>Elevation:</strong> {{ airport.elevation }}</li>
+        <li><strong>Latitude:</strong> {{ airport.lat }}</li>
+        <li><strong>Longitude:</strong> {{ airport.lon }}</li>
+        <li><strong>Timezone:</strong> {{ airport.tz }}</li>
+        <li><strong>LID:</strong> {{ airport.lid }}</li>
+    </ul>
+
+    {% if metar %}
+    <h3>METAR Data:</h3>
+    <pre>{{ metar }}</pre>
+{% else %}
+    <p>No METAR data available.</p>
+{% endif %}
+
+{% endblock %}

@@ -1,10 +1,10 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, get_object_or_404
 from .models import *
 from .utils import get_metar_from_icao
 
 
 def home(request):
-    metar_data = get_metar_from_icao("LEZL")  # ejemplo Sevilla
+    metar_data = get_metar_from_icao("LEMG")  # ejemplo Sevilla
     
     context = {
         "metar": metar_data
@@ -17,24 +17,11 @@ def todos(request):
     return render(request, "todos.html", {"todos": items})
 
 
+def airport_detail(request, icao):
+    airport = get_object_or_404(Airports, icao=icao.upper())
+    metar_data = get_metar_from_icao(icao.upper())
 
-
-
-
-
-
-
-'''class SearchView(ListView):
-    model = Airport
-    template_name = 'search.html'
-    context_object_name = 'all_search_results'
-
-    def get_queryset(self):
-       result = super(SearchView, self).get_queryset()
-       query = self.request.GET.get('search')
-       if query:
-          postresult = Airport.objects.filter(title__contains=query)
-          result = postresult
-       else:
-           result = None
-       return result'''
+    return render(request, "airport_detail.html", {
+        "airport": airport,
+        "metar": metar_data
+    })
