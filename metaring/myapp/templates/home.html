@@ -1,15 +1,23 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %} Home Page {% endblock %}
 
 {% block content %}
+
 <p>This is the home page</p>
 
-{% if metar %}
-    <h3>METAR Data:</h3>
-    <pre>{{ metar }}</pre>
-{% else %}
-    <p>No METAR data available.</p>
-{% endif %}
+<form id="airport-search-form">
+    <input 
+        type="text" 
+        id="icao_input"
+        placeholder="Enter ICAO code" 
+        maxlength="4"
+        required
+    >
+    <button type="submit">Search</button>
+</form>
+
+<script src="{% static 'myapp/js/web.js' %}"></script>
 
 {% endblock %}

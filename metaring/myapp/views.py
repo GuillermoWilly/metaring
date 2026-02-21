@@ -4,13 +4,7 @@ from .utils import get_metar_from_icao
 
 
 def home(request):
-    metar_data = get_metar_from_icao("LEMG")  # ejemplo Sevilla
-    
-    context = {
-        "metar": metar_data
-    }
-    
-    return render(request, "home.html", context)
+    return render(request, "home.html")
 
 def todos(request):
     items = TodoItems.objects.all()

@@ -14,7 +14,8 @@ def get_metar_from_icao(icao):
     response = requests.get(url)
     
     if response.status_code== 200:
-        airport_metar = response.json()
+        airport_json = response.json()
+        airport_metar = airport_json['data']
         return airport_metar
     else:
         return None

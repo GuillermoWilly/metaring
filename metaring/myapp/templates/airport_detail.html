@@ -1,30 +1,77 @@
 {% extends "base.html" %}
 
-{% block title %} Home Page {% endblock %}
+{% block title %} Airport {{ airport.icao }} {% endblock %}
 
 {% block content %}
-<p>This is the AIRPORT</p>
 
 <h1>{{ airport.name }}</h1>
 
-    <ul>
-        <li><strong>ICAO:</strong> {{ airport.icao }}</li>
-        <li><strong>IATA:</strong> {{ airport.iata }}</li>
-        <li><strong>City:</strong> {{ airport.city }}</li>
-        <li><strong>Subdivision:</strong> {{ airport.subd }}</li>
-        <li><strong>Country:</strong> {{ airport.country }}</li>
-        <li><strong>Elevation:</strong> {{ airport.elevation }}</li>
-        <li><strong>Latitude:</strong> {{ airport.lat }}</li>
-        <li><strong>Longitude:</strong> {{ airport.lon }}</li>
-        <li><strong>Timezone:</strong> {{ airport.tz }}</li>
-        <li><strong>LID:</strong> {{ airport.lid }}</li>
-    </ul>
+<h2>METAR</h2>
 
-    {% if metar %}
-    <h3>METAR Data:</h3>
-    <pre>{{ metar }}</pre>
+{% if metar %}
+    <div class="metar-box">
+        {{ metar }}
+    </div>
 {% else %}
-    <p>No METAR data available.</p>
+    <div class="metar-box">
+        No METAR data available.
+    </div>
 {% endif %}
+
+<h2>Airport Information</h2>
+
+<table>
+    <!--<tr>
+        <th>Field</th>
+        <th>Value</th>
+    </tr>-->
+    <tr>
+        <td><strong>ICAO</strong></td>
+        <td>{{ airport.icao }}</td>
+    </tr>
+    <tr>
+        <td><strong>IATA</strong></td>
+        <td>{{ airport.iata }}</td>
+    </tr>
+    <tr>
+        <td><strong>City</strong></td>
+        <td>{{ airport.city }}</td>
+    </tr>
+    <tr>
+        <td><strong>Subdivision</strong></td>
+        <td>{{ airport.subd }}</td>
+    </tr>
+    <tr>
+        <td><strong>Country</strong></td>
+        <td>{{ airport.country }}</td>
+    </tr>
+    <tr>
+        <td><strong>Elevation</strong></td>
+        <td>{{ airport.elevation }}</td>
+    </tr>
+    <tr>
+        <td><strong>Latitude</strong></td>
+        <td>{{ airport.lat }}</td>
+    </tr>
+    <tr>
+        <td><strong>Longitude</strong></td>
+        <td>{{ airport.lon }}</td>
+    </tr>
+    <tr>
+        <td><strong>Timezone</strong></td>
+        <td>{{ airport.tz }}</td>
+    </tr>
+    <tr>
+        <td><strong>LID</strong></td>
+        <td>{{ airport.lid }}</td>
+    </tr>
+</table>
+
+
+<br>
+
+<a href="{% url 'home' %}">
+    ← Back to search
+</a>
 
 {% endblock %}
