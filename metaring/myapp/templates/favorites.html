@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>My Favorite Airports</h1>
+
+<ul>
+{% for airport in favorites %}
+
+<li>
+<a href="{% url 'airport_detail' airport.icao %}">
+{{ airport.icao }} - {{ airport.name }}
+</a>
+</li>
+
+{% endfor %}
+</ul>
+
+{% endblock %}

@@ -6,6 +6,31 @@
 
 <h1>{{ airport.name }}</h1>
 
+{% if user.is_authenticated %}
+
+<form method="post" action="{% url 'toggle_favorite' airport.icao %}">
+    {% csrf_token %}
+
+    {% if user in airport.favorited_by.all %}
+        <button type="submit" class="btn btn-danger">
+            Remove from favorites
+        </button>
+    {% else %}
+        <button type="submit" class="btn btn-primary">
+            Add to favorites
+        </button>
+    {% endif %}
+
+</form>
+
+{% else %}
+
+<p>
+    <a href="/accounts/login/">Login</a> to add favorites
+</p>
+
+{% endif %}
+
 <h2>METAR</h2>
 
 {% if metar %}
