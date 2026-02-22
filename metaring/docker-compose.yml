@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+
+  web:
+    build: .
+    container_name: metaring_web
+
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py collectstatic --noinput &&
+             gunicorn metaring.wsgi:application --bind 0.0.0.0:8000"
+
+    volumes:
+      - .:/app
+
+    ports:
+      - "8000:8000"
+
+    environment:
+      - DEBUG=True
