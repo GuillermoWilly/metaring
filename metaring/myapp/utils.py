@@ -9,6 +9,10 @@ def base_url(icao):
     final_url = url_beginning + icao + url_ending
     return final_url
 
+def url_decoded(icao):
+    final_url = url_beginning + icao + "/decoded" + url_ending
+    return final_url
+
 def get_metar_from_icao(icao):
     url = base_url(icao)
     response = requests.get(url)
@@ -18,4 +22,45 @@ def get_metar_from_icao(icao):
         airport_metar = airport_json['data']
         return airport_metar
     else:
+        return None
+    
+def get_metar_decoded(icao):
+
+    url = url_decoded(icao)
+
+    try:
+        response = requests.get(url, timeout=5)
+        if response.status_code != 200:
+            return None
+
+        data = response.json().get("data", [])
+        if not data:
+            return None
+
+        metar = data[0]
+
+        return {
+            "icao": metar.get("icao"),
+            "raw_text": metar.get("raw_text"),
+            "observed": metar.get("report", {}).get("observed"),
+            "flight_category": metar.get("flight_category"),
+            "humidity": metar.get("humidity"),
+            "colors": metar.get("colors"),
+            "wind": metar.get("wind"),
+            "visibility": metar.get("visibility"),
+            "temperature": metar.get("temperature"),
+            "dewpoint": metar.get("dewpoint"),
+            "pressure": metar.get("pressure"),
+            "clouds": metar.get("clouds", []),
+            "conditions": metar.get("conditions", []),
+            "windshear": metar.get("windshear", []),
+            "remarks": metar.get("remarks", []),
+            "trend": metar.get("trend"),
+            "runway_state": metar.get("runway_state"),
+            "runway_visual": metar.get("runway_visual"),
+
+            "position": metar.get("position"),
+        }
+
+    except requests.RequestException:
         return None

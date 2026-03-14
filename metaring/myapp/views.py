@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from .models import *
-from .utils import get_metar_from_icao
+from .utils import get_metar_from_icao, get_metar_decoded
 
 
 def home(request):
@@ -40,6 +40,17 @@ def airport_detail(request, icao):
         "airport": airport,
         "metar": metar_data
     })
+
+def airport_decoded(request, icao):
+
+    airport = get_object_or_404(Airports, icao=icao.upper())
+    metar = get_metar_decoded(icao.upper())
+    context = {
+        "airport": airport,
+        "metar": metar
+    }
+
+    return render(request, "airport_decoded.html", context)
 
 @login_required
 def toggle_favorite(request, icao):

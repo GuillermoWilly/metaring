@@ -43,55 +43,57 @@
     </div>
 {% endif %}
 
+
+<!-- BOTÓN NUEVO -->
+<a href="{% url 'airport_decoded' airport.icao %}" class="btn btn-success mt-3">
+    View Decoded METAR
+</a>
+
+
 <h2>Airport Information</h2>
 
 <table>
-    <!--<tr>
-        <th>Field</th>
-        <th>Value</th>
-    </tr>-->
-    <tr>
-        <td><strong>ICAO</strong></td>
-        <td>{{ airport.icao }}</td>
-    </tr>
-    <tr>
-        <td><strong>IATA</strong></td>
-        <td>{{ airport.iata }}</td>
-    </tr>
-    <tr>
-        <td><strong>City</strong></td>
-        <td>{{ airport.city }}</td>
-    </tr>
-    <tr>
-        <td><strong>Subdivision</strong></td>
-        <td>{{ airport.subd }}</td>
-    </tr>
-    <tr>
-        <td><strong>Country</strong></td>
-        <td>{{ airport.country }}</td>
-    </tr>
-    <tr>
-        <td><strong>Elevation</strong></td>
-        <td>{{ airport.elevation }}</td>
-    </tr>
-    <tr>
-        <td><strong>Latitude</strong></td>
-        <td>{{ airport.lat }}</td>
-    </tr>
-    <tr>
-        <td><strong>Longitude</strong></td>
-        <td>{{ airport.lon }}</td>
-    </tr>
-    <tr>
-        <td><strong>Timezone</strong></td>
-        <td>{{ airport.tz }}</td>
-    </tr>
-    <tr>
-        <td><strong>LID</strong></td>
-        <td>{{ airport.lid }}</td>
-    </tr>
+<tr>
+    <td><strong>ICAO</strong></td>
+    <td>{{ airport.icao }}</td>
+</tr>
+<tr>
+    <td><strong>IATA</strong></td>
+    <td>{{ airport.iata }}</td>
+</tr>
+<tr>
+    <td><strong>City</strong></td>
+    <td>{{ airport.city }}</td>
+</tr>
+<tr>
+    <td><strong>Subdivision</strong></td>
+    <td>{{ airport.subd }}</td>
+</tr>
+<tr>
+    <td><strong>Country</strong></td>
+    <td>{{ airport.country }}</td>
+</tr>
+<tr>
+    <td><strong>Elevation</strong></td>
+    <td>{{ airport.elevation }}</td>
+</tr>
+<tr>
+    <td><strong>Latitude</strong></td>
+    <td>{{ airport.lat }}</td>
+</tr>
+<tr>
+    <td><strong>Longitude</strong></td>
+    <td>{{ airport.lon }}</td>
+</tr>
+<tr>
+    <td><strong>Timezone</strong></td>
+    <td>{{ airport.tz }}</td>
+</tr>
+<tr>
+    <td><strong>LID</strong></td>
+    <td>{{ airport.lid }}</td>
+</tr>
 </table>
-
 
 <br>
 

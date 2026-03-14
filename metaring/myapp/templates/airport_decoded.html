@@ -1,0 +1,333 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ airport.icao }} Decoded METAR
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+<!-- Airport header -->
+<div class="card mb-4">
+<div class="card-body">
+
+<h2>{{ airport.name }}</h2>
+<p class="text-muted">{{ airport.city }}, {{ airport.country }}</p>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<table class="table table-sm">
+<tr>
+<th>ICAO</th>
+<td>{{ airport.icao }}</td>
+</tr>
+
+<tr>
+<th>IATA</th>
+<td>{{ airport.iata }}</td>
+</tr>
+
+<tr>
+<th>Elevation</th>
+<td>{{ airport.elevation }} ft</td>
+</tr>
+</table>
+
+</div>
+
+<div class="col-md-6">
+
+<table class="table table-sm">
+<tr>
+<th>Latitude</th>
+<td>{{ airport.lat }}</td>
+</tr>
+
+<tr>
+<th>Longitude</th>
+<td>{{ airport.lon }}</td>
+</tr>
+
+<tr>
+<th>Timezone</th>
+<td>{{ airport.tz }}</td>
+</tr>
+</table>
+
+</div>
+
+</div>
+</div>
+</div>
+
+
+<!-- Raw METAR -->
+<div class="card mb-4">
+
+<div class="card-header">
+<h4>Raw METAR</h4>
+</div>
+
+<div class="card-body">
+
+{% if metar.raw_text %}
+<code>{{ metar.raw_text }}</code>
+{% else %}
+<p>No METAR available</p>
+{% endif %}
+
+</div>
+</div>
+
+
+<!-- Observation -->
+<div class="card mb-4">
+
+<div class="card-header">
+<h4>Observation</h4>
+</div>
+
+<div class="card-body">
+
+<table class="table">
+
+<tr>
+<th>Observed</th>
+<td>{{ metar.observed }}</td>
+</tr>
+
+<tr>
+<th>Flight Category</th>
+<td>{{ metar.flight_category }}</td>
+</tr>
+
+<tr>
+<th>Humidity</th>
+<td>{{ metar.humidity }} %</td>
+</tr>
+
+<tr>
+<th>Colors</th>
+<td>{{ metar.colors }}</td>
+</tr>
+
+</table>
+
+</div>
+</div>
+
+
+<!-- Wind -->
+<div class="card mb-4">
+
+<div class="card-header">
+<h4>Wind</h4>
+</div>
+
+<div class="card-body">
+
+{% if metar.wind %}
+
+<table class="table">
+
+<tr>
+<th>Direction</th>
+<td>{{ metar.wind.direction }}°</td>
+</tr>
+
+<tr>
+<th>Speed</th>
+<td>{{ metar.wind.speed.kts }} kt</td>
+</tr>
+
+<tr>
+<th>Gust</th>
+<td>{{ metar.wind.gust.kts }}</td>
+</tr>
+
+</table>
+
+{% else %}
+
+<p>No wind data</p>
+
+{% endif %}
+
+</div>
+</div>
+
+
+<!-- Visibility -->
+<div class="card mb-4">
+
+<div class="card-header">
+<h4>Visibility</h4>
+</div>
+
+<div class="card-body">
+
+{% if metar.visibility %}
+<strong>{{ metar.visibility.meters }}</strong>
+{% else %}
+<p>No visibility data</p>
+{% endif %}
+
+</div>
+</div>
+
+
+<!-- Temperature -->
+<div class="card mb-4">
+
+<div class="card-header">
+<h4>Temperature</h4>
+</div>
+
+<div class="card-body">
+
+<table class="table">
+
+<tr>
+<th>Temperature</th>
+<td>{{ metar.temperature.celsius }} °C</td>
+</tr>
+
+<tr>
+<th>Dewpoint</th>
+<td>{{ metar.dewpoint.celsius }} °C</td>
+</tr>
+
+</table>
+
+</div>
+</div>
+
+
+<!-- Pressure -->
+<div class="card mb-4">
+
+<div class="card-header">
+<h4>Pressure</h4>
+</div>
+
+<div class="card-body">
+
+{% if metar.pressure %}
+<strong>{{ metar.pressure.mb }} hPa</strong>
+{% else %}
+<p>No pressure data</p>
+{% endif %}
+
+</div>
+</div>
+
+
+<!-- Clouds -->
+<div class="card mb-4">
+
+<div class="card-header">
+<h4>Cloud Layers</h4>
+</div>
+
+<div class="card-body">
+
+{% if metar.clouds %}
+
+<table class="table">
+
+<tr>
+<th>Feet</th>
+<th>Meters</th>
+</tr>
+
+{% for cloud in metar.clouds %}
+
+<tr>
+<td>{{ cloud.feet }} ft</td>
+<td>{{ cloud.meters }} m</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% else %}
+
+<p>No cloud data available.</p>
+
+{% endif %}
+
+</div>
+</div>
+
+
+<!-- Weather Conditions -->
+<div class="card mb-4">
+
+<div class="card-header">
+<h4>Trend</h4>
+</div>
+
+<div class="card-body">
+
+{% if metar.trend %}
+
+<ul class="list-group">
+
+{% for trend in metar.trend %}
+<tr>
+<td>{{ metar.trend.change.text }}</td>
+</tr>
+{% endfor %}
+
+</ul>
+
+{% else %}
+
+<p>No Trend reported.</p>
+
+{% endif %}
+
+</div>
+</div>
+
+
+<!-- Remarks -->
+<div class="card mb-4">
+
+<div class="card-header">
+<h4>Remarks</h4>
+</div>
+
+<div class="card-body">
+
+{% if metar.remarks %}
+
+<ul class="list-group">
+
+{% for remark in metar.remarks %}
+<li class="list-group-item">{{ remark }}</li>
+{% endfor %}
+
+</ul>
+
+{% else %}
+
+<p>No remarks.</p>
+
+{% endif %}
+
+</div>
+</div>
+
+
+<a href="{% url 'airport_detail' airport.icao %}" class="btn btn-secondary mt-3">
+Back to METAR
+</a>
+
+</div>
+
+{% endblock %}

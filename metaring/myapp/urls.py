@@ -7,4 +7,5 @@ urlpatterns = [
     path("airport/<str:icao>/", views.airport_detail, name="airport_detail"),
     path("airport/<str:icao>/favorite/", views.toggle_favorite, name="toggle_favorite"),
     path("favorites/", views.favorite_airports, name="favorites"),
+    path("airport/<str:icao>/decoded/", views.airport_decoded, name="airport_decoded"),
 ]
