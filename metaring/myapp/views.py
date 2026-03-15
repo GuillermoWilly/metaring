@@ -54,6 +54,35 @@ def airport_decoded(request, icao):
 
     return render(request, "airport_decoded.html", context)
 
+def airport_compare(request):
+
+    icao1 = request.GET.get("icao1")
+    icao2 = request.GET.get("icao2")
+    force_refresh = request.GET.get("refresh")
+    
+    error = None
+    metar1 = None
+    metar2 = None
+
+    if icao1 and icao2 and icao1.upper() == icao2.upper():
+        error = "Departure and destination ICAO codes cannot be the same."
+    else:
+        if icao1:
+            metar1 = get_metar_decoded(icao1.upper(), force_refresh=bool(force_refresh))
+        if icao2:
+            metar2 = get_metar_decoded(icao2.upper(), force_refresh=bool(force_refresh))
+
+    context = {
+        "icao1": icao1,
+        "icao2": icao2,
+        "metar1": metar1,
+        "metar2": metar2,
+        "error": error,
+    }
+
+    return render(request, "airport_compare.html", context)
+
+
 @login_required
 def toggle_favorite(request, icao):
 

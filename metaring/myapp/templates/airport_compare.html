@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+
+{% block title %}
+Compare METARs
+{% endblock %}
+
+{% block content %}
+<div class="mb-3">
+        {% if icao1 and icao2 %}
+        <a href="{% url 'airport_compare' %}?icao1={{ icao1 }}&icao2={{ icao2 }}&refresh=1"
+           class="btn btn-outline-primary">
+           Refresh both METAR
+        </a>
+        {% endif %}
+    </div>
+<div class="container mt-4">
+
+    <h2 class="mb-4">Airport METAR Comparison</h2>
+
+    
+    {% if error %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endif %}
+
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Field</th>
+                    <th>{{ icao1|default:"Airport 1" }}</th>
+                    <th>{{ icao2|default:"Airport 2" }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <th>METAR</th>
+                    <td><code>{{ metar1.raw_text }}</code></td>
+                    <td><code>{{ metar2.raw_text }}</code></td>
+                </tr>
+
+                
+                <tr>
+                    <th>Temperature (°C)</th>
+                    <td>{{ metar1.temperature.celsius }}</td>
+                    <td>{{ metar2.temperature.celsius }}</td>
+                </tr>
+
+                
+                <tr>
+                    <th>Dewpoint (°C)</th>
+                    <td>{{ metar1.dewpoint.celsius  }}</td>
+                    <td>{{ metar2.dewpoint.celsius  }}</td>
+                </tr>
+
+               
+                <tr>
+                    <th>Wind</th>
+                    <td>
+                        {% if metar1 %}
+                            {{ metar1.wind.speed }} kt from {{ metar1.wind.direction }}°
+                        {% else %}
+                            N/A
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if metar2 %}
+                            {{ metar2.wind.speed }} kt from {{ metar2.wind.direction }}°
+                        {% else %}
+                            N/A
+                        {% endif %}
+                    </td>
+                </tr>
+
+                
+                <tr>
+                    <th>Visibility</th>
+                    <td>{{ metar1.visibility.meters  }} m</td>
+                    <td>{{ metar2.visibility.meters  }} m</td>
+                </tr>
+
+                
+                <tr>
+                    <th>Pressure (hPa)</th>
+                    <td>{{ metar1.pressure.mb  }}</td>
+                    <td>{{ metar2.pressure.mb  }}</td>
+                </tr>
+
+                
+                <tr>
+                    <th>Flight Category</th>
+                    <td>{{ metar1.flight_category  }}</td>
+                    <td>{{ metar2.flight_category  }}</td>
+                </tr>
+
+                
+                <tr>
+                    <th>Cloud Layers</th>
+                    <td>
+                        {% if metar1 and metar1.clouds %}
+                            {% for cloud in metar1.clouds %}
+                                {{ cloud.type }} at {{ cloud.altitude }} ft<br>
+                            {% endfor %}
+                        {% else %}
+                            N/A
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if metar2 and metar2.clouds %}
+                            {% for cloud in metar2.clouds %}
+                                {{ cloud.type }} at {{ cloud.altitude }} ft<br>
+                            {% endfor %}
+                        {% else %}
+                            N/A
+                        {% endif %}
+                    </td>
+                </tr>
+
+                
+                <tr>
+                    <th>Remarks</th>
+                    <td>
+                        {% if metar1 and metar1.remarks %}
+                            {% for remark in metar1.remarks %}
+                                {{ remark }}<br>
+                            {% endfor %}
+                        {% else %}
+                            N/A
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if metar2 and metar2.remarks %}
+                            {% for remark in metar2.remarks %}
+                                {{ remark }}<br>
+                            {% endfor %}
+                        {% else %}
+                            N/A
+                        {% endif %}
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <a href="{% url 'home' %}" class="btn btn-secondary mt-3">← Back to Search</a>
+
+</div>
+
+{% endblock %}

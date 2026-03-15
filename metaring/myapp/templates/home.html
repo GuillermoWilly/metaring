@@ -18,6 +18,35 @@
     <button type="submit">Search</button>
 </form>
 
+<form method="get" action="{% url 'airport_compare' %}" class="row g-3 mb-4">
+
+<div class="col-md-5">
+<input
+    type="text"
+    name="icao1"
+    class="form-control"
+    placeholder="Departure ICAO"
+    maxlength="4"
+    required>
+</div>
+
+<div class="col-md-5">
+<input
+    type="text"
+    name="icao2"
+    class="form-control"
+    placeholder="Destination ICAO"
+    maxlength="4"
+    required>
+</div>
+
+<div class="col-md-2">
+<button type="submit" class="btn btn-primary w-100">
+Compare
+</button>
+</div>
+
+</form>
 <script src="{% static 'myapp/js/web.js' %}"></script>
 
 {% endblock %}
