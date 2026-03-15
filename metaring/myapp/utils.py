@@ -1,4 +1,5 @@
 import requests
+from django.core.cache import cache
 
 
 url_beginning = "https://api.checkwx.com/v2/metar/"
@@ -14,18 +15,32 @@ def url_decoded(icao):
     return final_url
 
 def get_metar_from_icao(icao):
+
+    icao = icao.upper()
+    cache_key = f"metar_{icao}"
+    cached_metar = cache.get(cache_key)
+    if cached_metar:
+        return cached_metar
+    
     url = base_url(icao)
     response = requests.get(url)
     
     if response.status_code== 200:
         airport_json = response.json()
         airport_metar = airport_json['data']
+        cache.set(cache_key, airport_metar, timeout=600)
         return airport_metar
     else:
         return None
     
 def get_metar_decoded(icao):
 
+    icao = icao.upper()
+    cache_key = f"metar_{icao}"
+    cached_metar = cache.get(cache_key)
+    if cached_metar:
+        return cached_metar
+    
     url = url_decoded(icao)
 
     try:
@@ -38,6 +53,8 @@ def get_metar_decoded(icao):
             return None
 
         metar = data[0]
+
+        cache.set(cache_key, metar, timeout=600)
 
         return {
             "icao": metar.get("icao"),
