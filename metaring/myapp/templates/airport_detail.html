@@ -33,6 +33,11 @@
 
 <h2>METAR</h2>
 
+<a href="{% url 'airport_detail' airport.icao %}?refresh=1"
+   class="btn btn-outline-primary mb-3">
+   Refresh METAR
+</a>
+
 {% if metar %}
     <div class="metar-box">
         {{ metar }}

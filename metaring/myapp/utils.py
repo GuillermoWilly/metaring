@@ -14,13 +14,15 @@ def url_decoded(icao):
     final_url = url_beginning + icao + "/decoded" + url_ending
     return final_url
 
-def get_metar_from_icao(icao):
+def get_metar_from_icao(icao, force_refresh=False):
 
     icao = icao.upper()
     cache_key = f"metar_{icao}"
-    cached_metar = cache.get(cache_key)
-    if cached_metar:
-        return cached_metar
+    
+    if not force_refresh:
+        cached_metar = cache.get(cache_key)
+        if cached_metar:
+            return cached_metar
     
     url = base_url(icao)
     response = requests.get(url)
@@ -33,13 +35,15 @@ def get_metar_from_icao(icao):
     else:
         return None
     
-def get_metar_decoded(icao):
+def get_metar_decoded(icao, force_refresh=False):
 
     icao = icao.upper()
     cache_key = f"metar_{icao}"
-    cached_metar = cache.get(cache_key)
-    if cached_metar:
-        return cached_metar
+    
+    if not force_refresh:
+        cached_metar = cache.get(cache_key)
+        if cached_metar:
+            return cached_metar
     
     url = url_decoded(icao)
 

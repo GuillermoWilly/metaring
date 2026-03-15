@@ -70,7 +70,10 @@
 <div class="card-header">
 <h4>Raw METAR</h4>
 </div>
-
+<a href="{% url 'airport_decoded' airport.icao %}?refresh=1"
+   class="btn btn-outline-primary mb-3">
+   Refresh METAR
+</a>
 <div class="card-body">
 
 {% if metar.raw_text %}

@@ -33,9 +33,10 @@ def register(request):
 
 
 def airport_detail(request, icao):
-    airport = get_object_or_404(Airports, icao=icao.upper())
-    metar_data = get_metar_from_icao(icao.upper())
 
+    airport = get_object_or_404(Airports, icao=icao.upper())
+    force_refresh = request.GET.get("refresh")
+    metar_data = get_metar_from_icao(icao.upper(), force_refresh=bool(force_refresh))
     return render(request, "airport_detail.html", {
         "airport": airport,
         "metar": metar_data
@@ -44,7 +45,8 @@ def airport_detail(request, icao):
 def airport_decoded(request, icao):
 
     airport = get_object_or_404(Airports, icao=icao.upper())
-    metar = get_metar_decoded(icao.upper())
+    force_refresh = request.GET.get("refresh")
+    metar = get_metar_decoded(icao.upper(), force_refresh=bool(force_refresh))
     context = {
         "airport": airport,
         "metar": metar
