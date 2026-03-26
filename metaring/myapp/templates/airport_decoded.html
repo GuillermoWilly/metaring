@@ -8,333 +8,335 @@
 
 <div class="container mt-4">
 
-<!-- Airport header -->
-<div class="card mb-4">
-<div class="card-body">
+   <!-- Airport header -->
+   <div class="card mb-4">
+      <div class="card-body">
 
-<h2>{{ airport.name }}</h2>
-<p class="text-muted">{{ airport.city }}, {{ airport.country }}</p>
+         <h2>{{ airport.name }}</h2>
+            <p class="text-muted">{{ airport.city }}, {{ airport.country }}</p>
 
-<div class="row">
+      <div class="row">
 
-<div class="col-md-6">
+      <div class="col-md-6">
 
-<table class="table table-sm">
-<tr>
-<th>ICAO</th>
-<td>{{ airport.icao }}</td>
-</tr>
+      <table class="table table-sm">
+         <tr>
+            <th>ICAO</th>
+            <td>{{ airport.icao }}</td>
+         </tr>
 
-<tr>
-<th>IATA</th>
-<td>{{ airport.iata }}</td>
-</tr>
+         <tr>
+            <th>IATA</th>
+            <td>{{ airport.iata }}</td>
+         </tr>
 
-<tr>
-<th>Elevation</th>
-<td>{{ airport.elevation }} ft</td>
-</tr>
-</table>
+         <tr>
+            <th>Elevation</th>
+            <td>{{ airport.elevation }} ft</td>
+         </tr>
+      </table>
 
-</div>
+      </div>
 
-<div class="col-md-6">
+            <div class="col-md-6">
 
-<table class="table table-sm">
-<tr>
-<th>Latitude</th>
-<td>{{ airport.lat }}</td>
-</tr>
+               <table class="table table-sm">
+                  <tr>
+                     <th>Latitude</th>
+                     <td>{{ airport.lat }}</td>
+                  </tr>
 
-<tr>
-<th>Longitude</th>
-<td>{{ airport.lon }}</td>
-</tr>
+                  <tr>
+                     <th>Longitude</th>
+                     <td>{{ airport.lon }}</td>
+                  </tr>
 
-<tr>
-<th>Timezone</th>
-<td>{{ airport.tz }}</td>
-</tr>
-</table>
+                  <tr>
+                     <th>Timezone</th>
+                     <td>{{ airport.tz }}</td>
+                  </tr>
+               </table>
 
-</div>
+            </div>
 
-</div>
-</div>
-</div>
+         </div>
+      </div>
+   </div>
 
 
-<!-- Raw METAR -->
-<div class="card mb-4">
+   <!-- Raw METAR -->
+   <div class="card mb-4">
 
-<div class="card-header">
-<h4>Raw METAR</h4>
-</div>
-<a href="{% url 'airport_decoded' airport.icao %}?refresh=1"
-   class="btn btn-outline-primary mb-3">
-   Refresh METAR
-</a>
-<div class="card-body">
+      <div class="card-header">
+         <h4>Raw METAR</h4>
+      </div>
+         <a href="{% url 'airport_decoded' airport.icao %}?refresh=1"
+            class="btn btn-outline-primary mb-3">
+            Refresh METAR
+         </a>
+      <div class="card-body">
 
-{% if metar.raw_text %}
-<code>{{ metar.raw_text }}</code>
-{% else %}
-<p>No METAR available</p>
-{% endif %}
+      {% if metar.raw_text %}
+         <div class="metar-box">
+            {{ metar.raw_text }}
+         </div>
+      {% else %}
+         <p>No METAR available</p>
+      {% endif %}
 
-</div>
-</div>
+      </div>
+   </div>
 
 
-<!-- Observation -->
-<div class="card mb-4">
+   <!-- Observation -->
+   <div class="card mb-4">
 
-<div class="card-header">
-<h4>Observation</h4>
-</div>
+      <div class="card-header">
+         <h4>Observation</h4>
+      </div>
 
-<div class="card-body">
+      <div class="card-body">
 
-<table class="table">
+         <table class="table">
 
-<tr>
-<th>Observed</th>
-<td>{{ metar.observed }}</td>
-</tr>
+         <tr>
+            <th>Observed</th>
+            <td>{{ metar.observed }}</td>
+         </tr>
 
-<tr>
-<th>Flight Category</th>
-<td>{{ metar.flight_category }}</td>
-</tr>
+         <tr>
+            <th>Flight Category</th>
+            <td>{{ metar.flight_category }}</td>
+         </tr>
 
-<tr>
-<th>Humidity</th>
-<td>{{ metar.humidity }} %</td>
-</tr>
+         </table>
 
-<tr>
-<th>Colors</th>
-<td>{{ metar.colors }}</td>
-</tr>
+      </div>
+   </div>
 
-</table>
 
-</div>
-</div>
+   <!-- Wind -->
+   <div class="card mb-4">
 
+      <div class="card-header">
+         <h4>Wind</h4>
+      </div>
 
-<!-- Wind -->
-<div class="card mb-4">
+      <div class="card-body">
 
-<div class="card-header">
-<h4>Wind</h4>
-</div>
+         {% if metar.wind %}
 
-<div class="card-body">
+         <table class="table">
 
-{% if metar.wind %}
+            <tr>
+               <th>Degrees</th>
+               <td>{{ metar.wind.degrees }}°</td>
+            </tr>
 
-<table class="table">
+            <tr>
+               <th>Speed</th>
+               <td>{{ metar.wind.speed.kts }} kt</td>
+            </tr>
 
-<tr>
-<th>Direction</th>
-<td>{{ metar.wind.direction }}</td>
-</tr>
+            <tr>
+               <th>Gust</th>
+               <td>{{ metar.wind.gust.kts }}</td>
+            </tr>
 
-<tr>
-<th>Degrees</th>
-<td>{{ metar.wind.degrees }}°</td>
-</tr>
+         </table>
 
-<tr>
-<th>Speed</th>
-<td>{{ metar.wind.speed.kts }} kt</td>
-</tr>
+         {% else %}
 
-<tr>
-<th>Gust</th>
-<td>{{ metar.wind.gust.kts }}</td>
-</tr>
+         <p>No wind reported.</p>
 
-</table>
+         {% endif %}
 
-{% else %}
+      </div>
+   </div>
 
-<p>No wind data</p>
 
-{% endif %}
+   <!-- Visibility -->
+   <div class="card mb-4">
 
-</div>
-</div>
+      <div class="card-header">
+         <h4>Visibility</h4>
+      </div>
 
+      <div class="card-body">
 
-<!-- Visibility -->
-<div class="card mb-4">
+         {% if metar.visibility %}
+         <strong>{{ metar.visibility.meters }} meters</strong>
+         {% else %}
+         <p>No visibility reported.</p>
+         {% endif %}
 
-<div class="card-header">
-<h4>Visibility</h4>
-</div>
+      </div>
+   </div>
 
-<div class="card-body">
+   <!-- RVR -->
+   <div class="card mb-4">
 
-{% if metar.visibility %}
-<strong>{{ metar.visibility.meters }}</strong>
-{% else %}
-<p>No visibility data</p>
-{% endif %}
+      <div class="card-header">
+         <h4>RVR</h4>
+      </div>
 
-</div>
-</div>
+      <div class="card-body">
 
+         {% if metar.runway_visual %}
+         <strong>{{ metar.runway_visual.visual_range.meters }} meters</strong>
+         {% else %}
+         <p>No RVR reported.</p>
+         {% endif %}
 
-<!-- Temperature -->
-<div class="card mb-4">
+      </div>
+   </div>
 
-<div class="card-header">
-<h4>Temperature</h4>
-</div>
+   <!-- Conditions -->
+   <div class="card mb-4">
 
-<div class="card-body">
+      <div class="card-header">
+         <h4>Conditions</h4>
+      </div>
 
-<table class="table">
+      <div class="card-body">
 
-<tr>
-<th>Temperature</th>
-<td>{{ metar.temperature.celsius }} °C</td>
-</tr>
+         <table class="table">
+            {% if metar.conditions %}
+            <tr>
+               <th>Code</th>
+               <td>{{ metar.conditions.code }}</td>
+            </tr>
 
-<tr>
-<th>Dewpoint</th>
-<td>{{ metar.dewpoint.celsius }} °C</td>
-</tr>
+            <tr>
+               <th>Text</th>
+               <td>{{ metar.conditions.text }}</td>
+            </tr>
+            {% else %}
+            <p>No conditions reported.</p>
+            {% endif %}
 
-</table>
+         </table>
+      </div>
+   </div>
 
-</div>
-</div>
+   <!-- Clouds -->
+   <div class="card mb-4">
 
+      <div class="card-header">
+         <h4>Cloud Layers</h4>
+      </div>
 
-<!-- Pressure -->
-<div class="card mb-4">
+      <div class="card-body">
 
-<div class="card-header">
-<h4>Pressure</h4>
-</div>
+         {% if metar.clouds %}
+         <table class="table">
+            <tr>
+               Coverage and Height
+            </tr>
+            {% for cloud in metar.clouds %}
+            <tr>
+               {{ cloud.code }} {{ cloud.feet }} feet<br>
+            </tr>
+            {% endfor %}
+         </table>
+         {% else %}
+         <p>No cloud reported.</p>
+         {% endif %}
 
-<div class="card-body">
+      </div>
+   </div>
 
-{% if metar.pressure %}
-<strong>{{ metar.pressure.mb }} hPa</strong>
-{% else %}
-<p>No pressure data</p>
-{% endif %}
+   <!-- Vertical Visibility -->
+   <div class="card mb-4">
 
-</div>
-</div>
+      <div class="card-header">
+         <h4>Vertical Visibility</h4>
+      </div>
 
+      <div class="card-body">
 
-<!-- Clouds -->
-<div class="card mb-4">
+         {% if metar.ceiling %}
+         <strong>{{ metar.ceiling.feet }} feet</strong>
+         {% else %}
+         <p>No vertical visibility reported.</p>
+         {% endif %}
 
-<div class="card-header">
-<h4>Cloud Layers</h4>
-</div>
+      </div>
+   </div>
 
-<div class="card-body">
+   <!-- Temperature -->
+   <div class="card mb-4">
 
-{% if metar.clouds %}
+      <div class="card-header">
+         <h4>Temperature and Dew Point</h4>
+      </div>
 
-<table class="table">
+      <div class="card-body">
 
-<tr>
-<th>Feet</th>
-<th>Meters</th>
-</tr>
+         <table class="table">
+            {% if metar.temperature and metar.dewpoint %}
+            <tr>
+               <th>Temperature</th>
+               <td>{{ metar.temperature.celsius }} °C</td>
+            </tr>
 
-{% for cloud in metar.clouds %}
+            <tr>
+               <th>Dewpoint</th>
+               <td>{{ metar.dewpoint.celsius }} °C</td>
+            </tr>
+            {% else %}
+               <p>No temperature or dewpoint reported.</p>
+            {% endif %}
 
-<tr>
-<td>{{ cloud.feet }} ft</td>
-<td>{{ cloud.meters }} m</td>
-</tr>
+         </table>
 
-{% endfor %}
+      </div>
+   </div>
 
-</table>
 
-{% else %}
+   <!-- Pressure -->
+   <div class="card mb-4">
 
-<p>No cloud data available.</p>
+      <div class="card-header">
+         <h4>Pressure</h4>
+      </div>
 
-{% endif %}
+      <div class="card-body">
 
-</div>
-</div>
+         {% if metar.pressure %}
+            <strong>{{ metar.pressure.mb }} hPa</strong>
+         {% else %}
+            <p>No pressure reported.</p>
+         {% endif %}
 
+      </div>
+   </div>
 
-<!-- Weather Conditions -->
-<div class="card mb-4">
+   <!-- Trend -->
+   <div class="card mb-4">
 
-<div class="card-header">
-<h4>Trend</h4>
-</div>
+      <div class="card-header">
+         <h4>Trend</h4>
+      </div>
 
-<div class="card-body">
+         <div class="card-body">
 
-{% if metar.trend %}
+         {% if metar.trend %}
+            <tr>
+               <td>{{ metar.trend.change.text }}</td>
+            </tr>
+         {% else %}
 
-<ul class="list-group">
+            <p>No Trend reported.</p>
 
-{% for trend in metar.trend %}
-<tr>
-<td>{{ metar.trend.change.text }}</td>
-</tr>
-{% endfor %}
+         {% endif %}
 
-</ul>
+      </div>
+   </div>
 
-{% else %}
-
-<p>No Trend reported.</p>
-
-{% endif %}
-
-</div>
-</div>
-
-
-<!-- Remarks -->
-<div class="card mb-4">
-
-<div class="card-header">
-<h4>Remarks</h4>
-</div>
-
-<div class="card-body">
-
-{% if metar.remarks %}
-
-<ul class="list-group">
-
-{% for remark in metar.remarks %}
-<li class="list-group-item">{{ remark }}</li>
-{% endfor %}
-
-</ul>
-
-{% else %}
-
-<p>No remarks.</p>
-
-{% endif %}
-
-</div>
-</div>
-
-
-<a href="{% url 'airport_detail' airport.icao %}" class="btn btn-secondary mt-3">
-Back to METAR
-</a>
+   <a href="{% url 'airport_detail' airport.icao %}" class="btn btn-secondary mt-3">
+   Back to METAR
+   </a>
 
 </div>
 
