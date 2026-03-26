@@ -1,0 +1,124 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body general */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f7fb;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #0a3d62;
+    color: white;
+    padding: 15px 30px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Títulos */
+h1, h2, h3 {
+    margin-bottom: 15px;
+    color: #0a3d62;
+}
+
+/* Formulario */
+form {
+    margin-top: 20px;
+}
+
+/* Input */
+input[type="text"] {
+    padding: 12px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+/* Botón */
+button {
+    padding: 12px 20px;
+    border: none;
+    background-color: #0a3d62;
+    color: white;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+button:hover {
+    background-color: #074173;
+}
+
+/* Tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+td, th {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #0a3d62;
+    color: white;
+}
+
+/* Lista */
+ul {
+    list-style: none;
+    margin-top: 15px;
+}
+
+li {
+    padding: 8px 0;
+}
+
+/* METAR box */
+.metar-box {
+    background-color: #1e272e;
+    color: #00ff9c;
+    padding: 15px;
+    border-radius: 8px;
+    font-family: monospace;
+    margin-top: 20px;
+}
+
+/* Links */
+a {
+    color: #0a3d62;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #777;
+    font-size: 14px;
+}
