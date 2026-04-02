@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 
 class Airports(models.Model):
-    icao = models.CharField(max_length=4)
+    icao = models.CharField(max_length=4, unique=True)
     iata = models.CharField(max_length=3)
     name = models.CharField(max_length=200)
     city = models.CharField(max_length=200)
