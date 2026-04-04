@@ -4,106 +4,147 @@
 
 {% block content %}
 
-<h1>{{ airport.name }}</h1>
-
-{% if user.is_authenticated %}
-
-<form method="post" action="{% url 'toggle_favorite' airport.icao %}">
-    {% csrf_token %}
-
-    {% if user in airport.favorited_by.all %}
-        <button type="submit" class="btn btn-danger">
-            Remove from favorites
-        </button>
-    {% else %}
-        <button type="submit" class="btn btn-primary">
-            Add to favorites
-        </button>
-    {% endif %}
-
-</form>
-
-{% else %}
-
-<p>
-    <a href="/accounts/login/">Login</a> to add favorites
-</p>
-
-{% endif %}
-
-<h2>METAR</h2>
-
-<a href="{% url 'airport_detail' airport.icao %}?refresh=1"
-   class="btn btn-outline-primary mb-3">
-   Refresh METAR
-</a>
-
-{% if metar %}
-    <div class="metar-box">
-        {{ metar.raw_text }}
+<div class="airport-header">
+    <div class="airport-title-section">
+        <h1 class="airport-name">
+            <i class="bi bi-geo-alt-fill"></i>
+            {{ airport.name }}
+        </h1>
+        <div class="airport-codes">
+            <span class="icao-code">{{ airport.icao }}</span>
+            {% if airport.iata %}
+                <span class="iata-code">{{ airport.iata }}</span>
+            {% endif %}
+        </div>
     </div>
-{% else %}
-    <div class="metar-box">
-        No METAR data available.
+
+    <div class="airport-actions">
+        {% if user.is_authenticated %}
+            <form method="post" action="{% url 'toggle_favorite' airport.icao %}" class="favorite-form">
+                {% csrf_token %}
+                {% if user in airport.favorited_by.all %}
+                    <button type="submit" class="btn btn-favorite-remove">
+                        <i class="bi bi-star-fill"></i>
+                        Remove from favorites
+                    </button>
+                {% else %}
+                    <button type="submit" class="btn btn-favorite-add">
+                        <i class="bi bi-star"></i>
+                        Add to favorites
+                    </button>
+                {% endif %}
+            </form>
+        {% else %}
+            <div class="login-prompt">
+                <i class="bi bi-info-circle"></i>
+                <a href="{% url 'login' %}">Log in</a> to add favorites
+            </div>
+        {% endif %}
     </div>
-{% endif %}
+</div>
 
+<div class="row">
+    <div class="col-lg-8">
+        <!-- METAR Section -->
+        <div class="metar-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="bi bi-cloud-sun"></i>
+                    Current METAR
+                </h2>
+                <div class="metar-actions">
+                    <a href="{% url 'airport_detail' airport.icao %}?refresh=1" class="btn btn-refresh">
+                        <i class="bi bi-arrow-clockwise"></i>
+                        Refresh
+                    </a>
+                    <a href="{% url 'airport_decoded' airport.icao %}" class="btn btn-decoded">
+                        <i class="bi bi-eye"></i>
+                        View Decoded
+                    </a>
+                </div>
+            </div>
 
-<!-- BOTÓN NUEVO -->
-<a href="{% url 'airport_decoded' airport.icao %}" class="btn btn-success mt-3">
-    View Decoded METAR
-</a>
+            {% if metar %}
+                <div class="metar-display">
+                    <div class="metar-raw">{{ metar.raw_text }}</div>
+                    <div class="metar-timestamp">
+                        <i class="bi bi-clock"></i>
+                        Last updated: {{ metar.observed }}
+                    </div>
+                </div>
+            {% else %}
+                <div class="metar-no-data">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    <span>No METAR data available for this airport.</span>
+                </div>
+            {% endif %}
+        </div>
+    </div>
 
+    <div class="col-lg-4">
+        <!-- Airport Information Card -->
+        <div class="airport-info-card">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <i class="bi bi-info-circle"></i>
+                    Airport Information
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">
+                            <i class="bi bi-geo-alt"></i>
+                            Location
+                        </div>
+                        <div class="info-value">{{ airport.city }}, {{ airport.subd }}</div>
+                        <div class="info-subvalue">{{ airport.country }}</div>
+                    </div>
 
-<h2>Airport Information</h2>
+                    <div class="info-item">
+                        <div class="info-label">
+                            <i class="bi bi-mountains"></i>
+                            Elevation
+                        </div>
+                        <div class="info-value">{{ airport.elevation }} ft</div>
+                    </div>
 
-<table>
-<tr>
-    <td><strong>ICAO</strong></td>
-    <td>{{ airport.icao }}</td>
-</tr>
-<tr>
-    <td><strong>IATA</strong></td>
-    <td>{{ airport.iata }}</td>
-</tr>
-<tr>
-    <td><strong>City</strong></td>
-    <td>{{ airport.city }}</td>
-</tr>
-<tr>
-    <td><strong>Subdivision</strong></td>
-    <td>{{ airport.subd }}</td>
-</tr>
-<tr>
-    <td><strong>Country</strong></td>
-    <td>{{ airport.country }}</td>
-</tr>
-<tr>
-    <td><strong>Elevation</strong></td>
-    <td>{{ airport.elevation }}</td>
-</tr>
-<tr>
-    <td><strong>Latitude</strong></td>
-    <td>{{ airport.lat }}</td>
-</tr>
-<tr>
-    <td><strong>Longitude</strong></td>
-    <td>{{ airport.lon }}</td>
-</tr>
-<tr>
-    <td><strong>Timezone</strong></td>
-    <td>{{ airport.tz }}</td>
-</tr>
-<tr>
-    <td><strong>LID</strong></td>
-    <td>{{ airport.lid }}</td>
-</tr>
-</table>
+                    <div class="info-item">
+                        <div class="info-label">
+                            <i class="bi bi-geo"></i>
+                            Coordinates
+                        </div>
+                        <div class="info-value">{{ airport.lat }}, {{ airport.lon }}</div>
+                    </div>
 
-<br>
+                    <div class="info-item">
+                        <div class="info-label">
+                            <i class="bi bi-clock"></i>
+                            Timezone
+                        </div>
+                        <div class="info-value">{{ airport.tz }}</div>
+                    </div>
 
-<a href="{% url 'home' %}">
-    ← Back to search
-</a>
+                    {% if airport.lid %}
+                    <div class="info-item">
+                        <div class="info-label">
+                            <i class="bi bi-tag"></i>
+                            LID
+                        </div>
+                        <div class="info-value">{{ airport.lid }}</div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="navigation-section">
+    <a href="{% url 'home' %}" class="btn btn-back">
+        <i class="bi bi-arrow-left"></i>
+        Back to search
+    </a>
+</div>
 
 {% endblock %}

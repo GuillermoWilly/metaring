@@ -5,16 +5,10 @@ Compare METAR for {{ icao1 }} and {{ icao2 }}
 {% endblock %}
 
 {% block content %}
-<div class="mb-3">
-    {% if icao1 and icao2 %}
-        <a href="{% url 'airport_compare' %}?icao1={{ icao1 }}&icao2={{ icao2 }}&refresh=1" class="btn btn-outline-primary">
-            Refresh both METAR
-        </a>
-    {% endif %}
-</div>
+
 <div class="container mt-4">
 
-    <h2 class="mb-4">Airport METAR Comparison</h2>
+    <h1 class="mb-4">Airport METAR Comparison</h1>
 
     
     {% if error %}
@@ -38,12 +32,12 @@ Compare METAR for {{ icao1 }} and {{ icao2 }}
                 <tr>
                     <th>METAR</th>
                     {% if metar1 and metar1.raw_text %}
-                    <td><div class="metar-box">{{ metar1.raw_text }}</div></td>
+                    <td><div class="metar-raw">{{ metar1.raw_text }}</div></td>
                     {% else %}
                     <td>No METAR available</td>
                     {% endif %}
                     {% if metar2 and metar2.raw_text %}
-                    <td><div class="metar-box">{{ metar2.raw_text }}</div></td>
+                    <td><div class="metar-raw">{{ metar2.raw_text }}</div></td>
                     {% else %}
                     <td>No METAR available</td>
                     {% endif %}
@@ -207,9 +201,20 @@ Compare METAR for {{ icao1 }} and {{ icao2 }}
             </tbody>
         </table>
     </div>
-
-    <a href="{% url 'home' %}" class="btn btn-secondary mt-3">← Back to Search</a>
-
+    
+    <!-- Action Buttons Row -->
+    <div class="action-buttons-row">
+        {% if icao1 and icao2 %}
+            <a href="{% url 'airport_compare' %}?icao1={{ icao1 }}&icao2={{ icao2 }}&refresh=1" class="btn btn-refresh">
+                <i class="bi bi-arrow-clockwise"></i>
+                Refresh both METAR
+            </a>
+        {% endif %}
+        <a href="{% url 'home' %}" class="btn btn-back">
+            <i class="bi bi-arrow-left"></i>
+            Back to Search
+        </a>
+    </div>
 </div>
 
 {% endblock %}

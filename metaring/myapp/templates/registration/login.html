@@ -4,23 +4,90 @@
 
 {% block content %}
 
-<h2>Login</h2>
+<div class="login-hero">
+    <div class="hero-content">
+        <h2 class="hero-title">
+            <i class="bi bi-box-arrow-in-right"></i>
+            Welcome Back
+        </h2>
+        <p class="hero-subtitle">
+            Sign in to access your personalized airport weather data and saved favorites.
+        </p>
+    </div>
+</div>
 
-<form method="post">
+<div class="login-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="login-card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="bi bi-shield-lock"></i>
+                            Log In
+                        </h2>
+                        <p class="card-description">
+                            Enter your credentials to continue
+                        </p>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" class="login-form">
+                            {% csrf_token %}
 
-    {% csrf_token %}
+                            <div class="form-group">
+                                <label for="{{ form.username.id_for_label }}" class="form-label">
+                                    <i class="bi bi-person"></i>
+                                    Username
+                                </label>
+                                {{ form.username }}
+                                {% if form.username.errors %}
+                                    <div class="form-error">
+                                        {% for error in form.username.errors %}
+                                            <small class="text-danger">{{ error }}</small>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
 
-    {{ form.as_p }}
+                            <div class="form-group">
+                                <label for="{{ form.password.id_for_label }}" class="form-label">
+                                    <i class="bi bi-lock"></i>
+                                    Password
+                                </label>
+                                {{ form.password }}
+                                {% if form.password.errors %}
+                                    <div class="form-error">
+                                        {% for error in form.password.errors %}
+                                            <small class="text-danger">{{ error }}</small>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
 
-    <button type="submit" class="btn btn-primary">
-        Login
-    </button>
+                            {% if form.non_field_errors %}
+                                <div class="form-error">
+                                    {% for error in form.non_field_errors %}
+                                        <small class="text-danger">{{ error }}</small>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
 
-</form>
+                            <button type="submit" class="btn btn-login">
+                                <i class="bi bi-box-arrow-in-right"></i>
+                                Log In
+                            </button>
+                        </form>
 
-<p>
-Don't have an account?
-<a href="{% url 'register' %}">Register here</a>
-</p>
+                        <div class="register-link">
+                            <p>Don't have an account?
+                                <a href="{% url 'register' %}">Create one here</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

@@ -4,23 +4,105 @@
 
 {% block content %}
 
-<h2>Register</h2>
+<div class="register-hero">
+    <div class="hero-content">
+        <h2 class="hero-title">
+            <i class="bi bi-person-plus-fill"></i>
+            Join METARing
+        </h2>
+        <p class="hero-subtitle">
+            Create your account to save your favorite locations and access weather information faster.
+        </p>
+    </div>
+</div>
 
-<form method="post">
+<div class="register-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="register-card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="bi bi-person-plus"></i>
+                            Create Account
+                        </h2>
+                        <p class="card-description">
+                            Fill in your details to get started
+                        </p>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" class="register-form">
+                            {% csrf_token %}
 
-    {% csrf_token %}
+                            <div class="form-group">
+                                <label for="{{ form.username.id_for_label }}" class="form-label">
+                                    <i class="bi bi-person"></i>
+                                    Username
+                                </label>
+                                {{ form.username }}
+                                {% if form.username.errors %}
+                                    <div class="form-error">
+                                        {% for error in form.username.errors %}
+                                            <small class="text-danger">{{ error }}</small>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
 
-    {{ form.as_p }}
+                            <div class="form-group">
+                                <label for="{{ form.password1.id_for_label }}" class="form-label">
+                                    <i class="bi bi-lock"></i>
+                                    Password
+                                </label>
+                                {{ form.password1 }}
+                                {% if form.password1.errors %}
+                                    <div class="form-error">
+                                        {% for error in form.password1.errors %}
+                                            <small class="text-danger">{{ error }}</small>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
 
-    <button type="submit" class="btn btn-success">
-        Register
-    </button>
+                            <div class="form-group">
+                                <label for="{{ form.password2.id_for_label }}" class="form-label">
+                                    <i class="bi bi-lock-fill"></i>
+                                    Confirm Password
+                                </label>
+                                {{ form.password2 }}
+                                {% if form.password2.errors %}
+                                    <div class="form-error">
+                                        {% for error in form.password2.errors %}
+                                            <small class="text-danger">{{ error }}</small>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
 
-</form>
+                            {% if form.non_field_errors %}
+                                <div class="form-error">
+                                    {% for error in form.non_field_errors %}
+                                        <small class="text-danger">{{ error }}</small>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
 
-<p>
-Already have an account?
-<a href="{% url 'login' %}">Login here</a>
-</p>
+                            <button type="submit" class="btn btn-register">
+                                <i class="bi bi-person-plus"></i>
+                                Create Account
+                            </button>
+                        </form>
+
+                        <div class="login-link">
+                            <p>Already have an account?
+                                <a href="{% url 'login' %}">Log in here</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
