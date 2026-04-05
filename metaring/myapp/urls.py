@@ -9,4 +9,6 @@ urlpatterns = [
     path("favorites/", views.favorite_airports, name="favorites"),
     path("airport/<str:icao>/decoded/", views.airport_decoded, name="airport_decoded"),
     path("airport_compare/", views.airport_compare, name="airport_compare"),
+    path('square-numbers/', views.square_numbers, name='square_numbers'),
+    path('add-two-numbers/', views.add_two_numbers, name='load_test_endpoint'),
 ]

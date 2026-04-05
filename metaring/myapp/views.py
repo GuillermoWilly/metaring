@@ -4,6 +4,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from .models import *
 from .utils import get_metar_from_icao, get_metar_decoded
+import time
+from django.http import JsonResponse
+from django.views.decorators.http import require_http_methods
 
 
 def home(request):
@@ -105,3 +108,18 @@ def favorite_airports(request):
     return render(request, "favorites.html", {
         "favorites": favorites
     })
+
+@require_http_methods(["GET"])
+def square_numbers(request):
+    squares = {num: num**2 for num in range(1, 1000001)}
+    return JsonResponse(squares)
+
+@require_http_methods(["GET"])
+def add_two_numbers(request):
+    time.sleep(5)
+
+    a = int(request.GET.get('a', 0))
+    b = int(request.GET.get('b', 0))
+    result = a + b
+
+    return JsonResponse({'result': result})
