@@ -23,8 +23,8 @@ Compare METAR for {{ icao1 }} and {{ icao2 }}
             <thead class="table-dark">
                 <tr>
                     <th>Field</th>
-                    <th>{{ icao1|default:"Airport 1" }}</th>
-                    <th>{{ icao2|default:"Airport 2" }}</th>
+                    <th>{{ icao1|upper|default:"Airport 1" }}</th>
+                    <th>{{ icao2|upper|default:"Airport 2" }}</th>
                 </tr>
             </thead>
             <tbody>

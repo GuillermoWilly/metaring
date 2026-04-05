@@ -7,7 +7,7 @@ services:
     container_name: metaring_web
 
     command: >
-      sh -c "python manage.py migrate && python manage.py import_airports myapp/csv/airports.csv && python manage.py clean_airports &&
+      sh -c "python manage.py migrate && python manage.py flush --no-input && python manage.py import_airports myapp/csv/airports.csv && python manage.py clean_airports &&
              python manage.py collectstatic --noinput &&
              gunicorn metaring.wsgi:application --bind 0.0.0.0:8000"
 

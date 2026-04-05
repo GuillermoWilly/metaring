@@ -5,21 +5,132 @@
     box-sizing: border-box;
 }
 
-/* Body general */
+/* Body */
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #f4f7fb;
-    color: #333;
-    line-height: 1.6;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #3a3a3a;
+
+    background-image: url("/static/myapp/images/background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 /* Navbar */
-.navbar {
-    background-color: #0a3d62;
+.metaring-navbar {
+    background: linear-gradient(135deg, #0a3d62 0%, #0d5a8f 100%);
     color: white;
-    padding: 15px 30px;
+    padding: 12px 0;
+    font-size: 16px;
+    box-shadow: 0 4px 12px rgba(10, 61, 98, 0.3);
+    border-bottom: 3px solid #05a3d6;
+}
+
+/* Navbar Brand */
+.metaring-brand {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-right: 40px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.metaring-brand:hover {
+    transform: scale(1.05);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.metaring-brand i {
+    font-size: 28px;
+    color: #05a3d6;
+}
+
+/* Navbar Links */
+.metaring-nav-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px !important;
+    color: #e8f4f8 !important;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 6px;
+    margin: 0 4px;
+}
+
+.metaring-nav-link i {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.metaring-nav-link:hover {
+    color: #05a3d6 !important;
+    background-color: rgba(5, 163, 214, 0.1);
+    transform: translateY(-2px);
+}
+
+.metaring-nav-link:hover i {
+    transform: scale(1.2);
+}
+
+/* Navbar Username */
+.metaring-username {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px !important;
+    color: #e8f4f8 !important;
+    font-weight: 500;
+    background-color: rgba(5, 163, 214, 0.15);
+    border-radius: 6px;
+    border-left: 3px solid #05a3d6;
+    margin: 0 4px;
+}
+
+.metaring-username i {
     font-size: 20px;
-    font-weight: bold;
+    color: #05a3d6;
+}
+
+/* Logout Button */
+.metaring-logout-btn {
+    color: #ff6b6b !important;
+    border: 1px solid rgba(255, 107, 107, 0.3);
+}
+
+.metaring-logout-btn:hover {
+    color: #ff6b6b !important;
+    background-color: rgba(255, 107, 107, 0.1);
+    border: 1px solid rgba(255, 107, 107, 0.6);
+}
+
+/* Register Button */
+.metaring-register-btn {
+    border: 2px solid #05a3d6;
+    color: #05a3d6 !important;
+    background-color: transparent;
+}
+
+.metaring-register-btn:hover {
+    background-color: #05a3d6;
+    color: #0a3d62 !important;
+    border-color: #05a3d6;
+}
+
+/* Navbar Toggler */
+.metaring-toggler {
+    border-color: #05a3d6 !important;
+}
+
+.metaring-toggler:focus {
+    box-shadow: 0 0 0 0.25rem rgba(5, 163, 214, 0.25);
 }
 
 /* Contenedor principal */
@@ -32,13 +143,20 @@ body {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* Títulos */
-h1, h2, h3 {
+/* tittles */
+h1, h3 {
+    text-align: center;
     margin-bottom: 15px;
     color: #0a3d62;
 }
 
-/* Formulario */
+h2{
+    text-align: center;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+/* Form */
 form {
     margin-top: 20px;
 }
@@ -52,7 +170,7 @@ input[type="text"] {
     font-size: 16px;
 }
 
-/* Botón */
+/* Button */
 button {
     padding: 12px 20px;
     border: none;
@@ -68,7 +186,7 @@ button:hover {
     background-color: #074173;
 }
 
-/* Tabla */
+/* table */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -85,10 +203,668 @@ th {
     color: white;
 }
 
-/* Lista */
+/* List */
 ul {
     list-style: none;
     margin-top: 15px;
+}
+
+/* Airport Detail Page Styles */
+.airport-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    padding: 25px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 12px;
+    border-left: 5px solid #05a3d6;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.airport-title-section {
+    flex: 1;
+}
+
+.airport-name {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #0a3d62;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.airport-name i {
+    color: #05a3d6;
+    font-size: 2.8rem;
+}
+
+.airport-codes {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.icao-code, .iata-code {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.icao-code {
+    background-color: #05a3d6;
+    color: white;
+}
+
+.iata-code {
+    background-color: #6c757d;
+    color: white;
+}
+
+.airport-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.favorite-form {
+    margin: 0;
+}
+
+.btn-favorite-add, .btn-favorite-remove {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-favorite-add {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.btn-favorite-add:hover {
+    background-color: #e0a800;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 193, 7, 0.4);
+}
+
+.btn-favorite-remove {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-favorite-remove:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+}
+
+.login-prompt {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background-color: #e9ecef;
+    border-radius: 8px;
+    color: #6c757d;
+    font-size: 0.95rem;
+}
+
+.login-prompt a {
+    color: #05a3d6;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-prompt a:hover {
+    text-decoration: underline;
+}
+
+/* METAR Section */
+.metar-section {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.section-header {
+    background: linear-gradient(135deg, #0a3d62 0%, #0d5a8f 100%);
+    color: white;
+    padding: 20px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-title i {
+    color: #ffffff;
+}
+
+.metar-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-refresh, .btn-decoded {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.btn-refresh {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-refresh:hover {
+    background-color: #5a6268;
+    transform: translateY(-1px);
+}
+
+.btn-decoded {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-decoded:hover {
+    background-color: #218838;
+    transform: translateY(-1px);
+}
+
+.metar-display {
+    padding: 25px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.metar-raw {
+    font-family: 'Courier New', monospace;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #0a3d62;
+    background-color: #ffffff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    border: 2px solid #e9ecef;
+    margin-bottom: 15px;
+    word-break: break-all;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.metar-timestamp {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #6c757d;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.metar-timestamp i {
+    color: #05a3d6;
+}
+
+.metar-no-data {
+    padding: 25px;
+    text-align: center;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1.1rem;
+}
+
+.metar-no-data i {
+    color: #ffc107;
+    font-size: 1.3rem;
+}
+
+/* Airport Info Card */
+.airport-info-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    height: fit-content;
+}
+
+.card-header {
+    background: linear-gradient(135deg, #0a3d62 0%, #0d5a8f 100%);
+    color: white;
+    padding: 20px 25px;
+}
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.card-title i {
+    color: #05a3d6;
+}
+
+.card-body {
+    padding: 25px;
+}
+
+.info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-item {
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #05a3d6;
+    transition: all 0.3s ease;
+}
+
+.info-item:hover {
+    background: #e9ecef;
+    transform: translateX(5px);
+}
+
+.info-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: #0a3d62;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-label i {
+    color: #05a3d6;
+    font-size: 1rem;
+}
+
+.info-value {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 2px;
+}
+
+.info-subvalue {
+    font-size: 0.85rem;
+    color: #6c757d;
+    font-weight: 500;
+}
+
+/* Navigation Section */
+.navigation-section {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background-color: #6c757d;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.btn-back:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .airport-header {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .airport-name {
+        font-size: 2rem;
+    }
+
+    .section-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .metar-actions {
+        justify-content: center;
+    }
+
+    .airport-codes {
+        justify-content: center;
+    }
+}
+
+/* Home Page Styles */
+.home-hero {
+    background: linear-gradient(135deg, #0a3d62 0%, #0d5a8f 50%, #05a3d6 100%);
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.home-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="50" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="30" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-title i {
+    color: #05a3d6;
+    font-size: 3.8rem;
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    font-weight: 300;
+    line-height: 1.6;
+    margin: 0;
+    opacity: 0.9;
+}
+
+.search-section {
+    padding: 60px 0;
+    background: #f8f9fa;
+}
+
+.search-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    height: 100%;
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+}
+
+.search-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+}
+
+.search-card .card-header {
+    background: linear-gradient(135deg, #0a3d62 0%, #0d5a8f 100%);
+    color: white;
+    padding: 25px;
+    text-align: center;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.card-title i {
+    color: #05a3d6;
+    font-size: 1.8rem;
+}
+
+.card-description {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin: 0;
+    font-weight: 300;
+}
+
+.search-card .card-body {
+    padding: 30px;
+}
+
+.search-form {
+    height: 100%;
+}
+
+.input-group-text {
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+}
+
+.search-input {
+    border-left: none;
+    font-size: 1rem;
+    padding: 12px 16px;
+    border-radius: 0 6px 6px 0 !important;
+    color: #212529 !important;
+    background-color: #ffffff !important;
+}
+
+.search-input:focus {
+    border-color: #05a3d6;
+    box-shadow: 0 0 0 0.2rem rgba(5, 163, 214, 0.25);
+    color: #212529 !important;
+    background-color: #ffffff !important;
+}
+
+.search-input::placeholder {
+    color: #6c757d !important;
+}
+
+.btn-search, .btn-compare {
+    background: linear-gradient(135deg, #05a3d6 0%, #0d5a8f 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-search:hover, .btn-compare:hover {
+    background: linear-gradient(135deg, #0d5a8f 0%, #05a3d6 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(5, 163, 214, 0.4);
+}
+
+.btn-compare {
+    margin-top: 20px;
+}
+
+.form-help {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.comparison-inputs {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+}
+
+.departure-input, .destination-input {
+    flex: 1;
+}
+
+.vs-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #05a3d6;
+    font-size: 1.2rem;
+    background: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid #e9ecef;
+}
+
+.vs-indicator i {
+    font-size: 1.2rem;
+    color: #05a3d6;
+}
+
+/* Features Section */
+.features-section {
+    padding: 60px 0;
+    background: white;
+}
+
+.feature-card {
+    text-align: center;
+    padding: 30px 20px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #05a3d6 0%, #0d5a8f 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    color: white;
+    font-size: 2rem;
+    box-shadow: 0 4px 12px rgba(5, 163, 214, 0.3);
+}
+
+.feature-card h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #0a3d62;
+    margin-bottom: 15px;
+}
+
+.feature-card p {
+    color: #6c757d;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Responsive Design for Home Page */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .hero-title i {
+        font-size: 3rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .search-section {
+        padding: 40px 0;
+    }
+
+    .search-card .card-body {
+        padding: 20px;
+    }
+
+    .card-title {
+        font-size: 1.3rem;
+    }
+
+    .features-section {
+        padding: 40px 0;
+    }
+
+    .feature-card {
+        margin-bottom: 20px;
+    }
 }
 
 li {
@@ -122,3 +898,573 @@ a:hover {
     color: #777;
     font-size: 14px;
 }
+
+/* Airport Compare Page Styles */
+.action-buttons-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 30px;
+    padding: 20px 0;
+}
+
+.btn-refresh, .btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-refresh {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-refresh:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
+}
+
+.btn-back {
+    background-color: #0a3d62;
+    color: white;
+}
+
+.btn-back:hover {
+    background-color: #074173;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(10, 61, 98, 0.3);
+}
+
+/* Responsive Design for Compare Page */
+@media (max-width: 768px) {
+    .action-buttons-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .btn-refresh, .btn-back {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Registration Page Styles */
+.register-hero {
+    background: linear-gradient(135deg, #0a3d62 0%, #0d5a8f 50%, #05a3d6 100%);
+    color: white;
+    padding: 60px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.register-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="50" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="30" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.1;
+}
+
+.register-section {
+    padding: 60px 0;
+    background: #f8f9fa;
+}
+
+.register-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+}
+
+.register-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+}
+
+.register-card .card-header {
+    background: linear-gradient(135deg, #0a3d62 0%, #0d5a8f 100%);
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+.register-card .card-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.register-card .card-title i {
+    color: #05a3d6;
+    font-size: 2rem;
+}
+
+.register-card .card-description {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin: 0;
+    font-weight: 300;
+}
+
+.register-card .card-body {
+    padding: 40px;
+}
+
+.register-form {
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: #0a3d62;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.form-label i {
+    color: #05a3d6;
+    font-size: 1rem;
+}
+
+.register-form input[type="text"],
+.register-form input[type="email"],
+.register-form input[type="password"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #ffffff;
+    color: #212529;
+}
+
+.register-form input[type="text"]:focus,
+.register-form input[type="email"]:focus,
+.register-form input[type="password"]:focus {
+    border-color: #05a3d6;
+    box-shadow: 0 0 0 0.2rem rgba(5, 163, 214, 0.25);
+    outline: none;
+}
+
+.register-form input[type="text"]::placeholder,
+.register-form input[type="email"]::placeholder,
+.register-form input[type="password"]::placeholder {
+    color: #6c757d;
+}
+
+.form-error {
+    margin-top: 5px;
+}
+
+.btn-register {
+    width: 100%;
+    background: linear-gradient(135deg, #05a3d6 0%, #0d5a8f 100%);
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.btn-register:hover {
+    background: linear-gradient(135deg, #0d5a8f 0%, #05a3d6 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(5, 163, 214, 0.4);
+}
+
+.btn-register i {
+    font-size: 1.2rem;
+}
+
+.login-link {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #e9ecef;
+}
+
+.login-link p {
+    margin: 0;
+    color: #6c757d;
+    font-size: 0.95rem;
+}
+
+.login-link a {
+    color: #05a3d6;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design for Registration Page */
+@media (max-width: 768px) {
+    .register-hero {
+        padding: 40px 0;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .hero-title i {
+        font-size: 3rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .register-section {
+        padding: 40px 0;
+    }
+
+    .register-card .card-body {
+        padding: 25px;
+    }
+
+    .register-card .card-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* Login Page Styles */
+.login-hero {
+    background: linear-gradient(135deg, #0a3d62 0%, #0d5a8f 50%, #05a3d6 100%);
+    color: white;
+    padding: 60px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="50" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="30" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.1;
+}
+
+.login-section {
+    padding: 60px 0;
+    background: #f8f9fa;
+}
+
+.login-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+}
+
+.login-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+}
+
+.login-card .card-header {
+    background: linear-gradient(135deg, #0a3d62 0%, #0d5a8f 100%);
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+.login-card .card-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.login-card .card-title i {
+    color: #05a3d6;
+    font-size: 2rem;
+}
+
+.login-card .card-description {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin: 0;
+    font-weight: 300;
+}
+
+.login-card .card-body {
+    padding: 40px;
+}
+
+.login-form {
+    margin-bottom: 30px;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #ffffff;
+    color: #212529;
+}
+
+.login-form input[type="text"]:focus,
+.login-form input[type="password"]:focus {
+    border-color: #05a3d6;
+    box-shadow: 0 0 0 0.2rem rgba(5, 163, 214, 0.25);
+    outline: none;
+}
+
+.login-form input[type="text"]::placeholder,
+.login-form input[type="password"]::placeholder {
+    color: #6c757d;
+}
+
+.btn-login {
+    width: 100%;
+    background: linear-gradient(135deg, #05a3d6 0%, #0d5a8f 100%);
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.btn-login:hover {
+    background: linear-gradient(135deg, #0d5a8f 0%, #05a3d6 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(5, 163, 214, 0.4);
+}
+
+.btn-login i {
+    font-size: 1.2rem;
+}
+
+.register-link {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #e9ecef;
+}
+
+.register-link p {
+    margin: 0;
+    color: #6c757d;
+    font-size: 0.95rem;
+}
+
+.register-link a {
+    color: #05a3d6;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design for Login Page */
+@media (max-width: 768px) {
+    .login-hero {
+        padding: 40px 0;
+    }
+
+    .login-hero .hero-title {
+        font-size: 2.5rem;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .login-hero .hero-title i {
+        font-size: 3rem;
+    }
+
+    .login-hero .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .login-section {
+        padding: 40px 0;
+    }
+
+    .login-card .card-body {
+        padding: 25px;
+    }
+
+    .login-card .card-title {
+        font-size: 1.5rem;
+    }
+}
+
+/*
+.search-bar {
+    --size: 64px;
+    --expanded-width: 520px;
+
+    width: var(--size);
+    height: var(--size);
+
+    margin: 100px auto;
+
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.9);
+
+    backdrop-filter: blur(10px);
+
+    box-shadow: 
+        0 8px 20px rgba(0,0,0,0.08),
+        inset 0 0 0 1px rgba(255,255,255,0.4);
+
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+
+    transition: 
+        width 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.3s ease;
+
+    cursor: text;
+}
+
+.search-bar:focus-within {
+    width: var(--expanded-width);
+
+    box-shadow: 
+        0 10px 30px rgba(0,0,0,0.12),
+        0 0 0 3px rgba(10, 61, 98, 0.15);
+}
+
+.search-bar form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.search-submit {
+    width: var(--size);
+    height: var(--size);
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 50%;
+
+    background: linear-gradient(135deg, #0a3d62, #074173);
+    color: white;
+
+    cursor: pointer;
+
+    transition: 
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.search-submit:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.search-submit i {
+    font-size: 18px;
+    transition: transform 0.4s ease;
+}
+
+.search-bar:focus-within .search-submit i {
+    transform: translateX(-2px);
+}
+
+.search-input {
+    flex: 1;
+
+    border: none;
+    outline: none;
+
+    font-size: 16px;
+    padding: 0 15px;
+
+    opacity: 0;
+    width: 0;
+
+    transform: translateX(20px);
+
+    transition: 
+        opacity 0.3s ease,
+        transform 0.4s ease,
+        width 0.4s ease;
+}
+
+
+
+.search-bar:focus-within .search-input {
+    opacity: 1;
+    width: 100%;
+    transform: translateX(0);
+}
+
+.search-input::placeholder {
+    color: #999;
+    transition: opacity 0.3s;
+}
+
+.search-bar:focus-within .search-input::placeholder {
+    opacity: 0.6;
+}*/
